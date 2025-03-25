@@ -3,6 +3,9 @@ from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+import uvicorn
+from dotenv import load_dotenv
+import os
 
 app = FastAPI()
 class Prompt(BaseModel):
@@ -40,3 +43,5 @@ def generate_image(request: ImageRequest):
     # Placeholder for image generation logic
     image_url = "https://dimg04.tripcdn.com/images/0a13i12000e8gmk5hDC23.jpg"
     return {"image_url": image_url, "prompt": request.text}
+
+
