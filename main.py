@@ -35,7 +35,7 @@ app.add_middleware(
 
 @app.post("/optimize-prompt/")
 def optimize_prompt(prompt: Prompt):
-    optimized_prompt = prompt.prompt + " optimized"
+    optimized_prompt = prompt.prompt + " ------ this is optimized"
     return {"optimized_prompt": optimized_prompt}
 
 
