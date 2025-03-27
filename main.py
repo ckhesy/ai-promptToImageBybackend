@@ -63,3 +63,18 @@ def generate_image(request: ImageRequest):
         return {"error": "No image file found", "prompt": request.text}
 
 
+# 指定图片名称，传给后端
+@app.post("/generateoptimize-image/")
+def generate_targetImage(request: ImageRequest):
+    # Define the specific image file path
+    image_path = Path("image/0a13212000b8l4oja7216.png")
+
+    # Read the image file in binary mode
+    if image_path.exists():
+        with open(image_path, "rb") as file:
+            # Encode the image to base64
+            encoded_image = base64.b64encode(file.read()).decode("utf-8")
+        return {"image_base64": f"data:image/{image_path.suffix[1:]};base64,{encoded_image}", "prompt": request.text}
+    else:
+        return {"error": f"Image file {image_path.name} not found", "prompt": request.text}
+
